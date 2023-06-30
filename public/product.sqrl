@@ -1,0 +1,129 @@
+
+
+<div class="root">
+    <style>
+        .root {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(69, 146, 190);
+            padding: 100px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .logo {
+            position: absolute;
+            top: 25px;
+            height: 50px;
+            left: 50px;
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-info {
+            width: 100%;
+            height: 100%;
+            flex-grow: 1;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                'image name'
+                'image price'
+                'image action'
+            ;
+            gap: 24px 36px;
+        }
+
+        .product-info__image {
+            grid-area: image;
+        }
+
+        .product-info__name {
+            grid-area: name;
+        }
+
+        .product-info__price {
+            grid-area: price;
+        }
+
+        .product-info__action {
+            grid-area: action;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-weight: 500;
+            font-size: 48px;
+            line-height: 1.25;
+            color: white;
+        }
+
+        .price {
+            color: white;
+            display: flex;
+            align-items: baseline;
+            font-weight: 600;
+            font-size: 96px;
+            line-height: 1;
+        }
+
+        .price__main {
+            font-size: 1em;
+        }
+
+        .price__fraction {
+            font-size: .5em;
+            margin-left: .2em;
+        }
+
+        .button {
+            margin: 0;
+            padding: 20px 40px;
+            color: white;
+            font-weight: 500;
+            font-size: 36px;
+            background: none;
+            border: 4px solid white;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="logo">
+        <img src="{{ it.logoSrc }}" alt="" class="logo-image">
+    </div>
+
+    <div class="product-info">
+        <div class="product-info__image">
+            <img src="{{ it.product.imageSrc }}" alt="" class="product-image">
+        </div>
+        <div class="product-info__name">
+            <div class="name">{{ it.product.name }}</div>
+        </div>
+        <div class="product-info__price">
+            {{ @if (it.product.screenNumber === 1) }}
+            <div class="price">
+                <div class="price__main">{{ it.product.primaryPrice.main }}</div>
+                <div class="price__fraction">{{ it.product.primaryPrice.fraction }}</div>
+            </div>
+            {{ /if }}
+        </div>
+        <div class="product-info__action">
+            <button data-id="DetailsButton" class="button">О товаре</button>
+        </div>
+    </div>
+</div>
